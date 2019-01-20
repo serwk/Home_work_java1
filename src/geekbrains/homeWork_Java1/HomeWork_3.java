@@ -1,6 +1,6 @@
 package geekbrains.homeWork_Java1;
 
-/*
+/**
 Java. Level 1. Home work 3.
 
 @author Sergey Bondarenko
@@ -12,15 +12,22 @@ import java.util.Scanner;
 
 public class HomeWork_3 {
 
-    public static void main (String[] args) {
-        //Task 1. Game "Guess the number"
-        playGuessNumber();
+    public static Scanner sc = new Scanner(System.in);
 
-        //Task 2. Game "Guess the word"
+    public static void main (String[] args) {
+
+        System.out.println("\nВ какую игру будем играть:? 1 - Угадай число / 2 - Угадай слово");
+
+        int x = sc.nextInt();
+        if (x == 1) {
+            //Task 1. Game "Guess the number"
+            playGuessNumber();
+        } else if (x == 2) {
+            //Task 2. Game "Guess the word"
+            playGuessWord();
+        }
 
     }
-
-    public static Scanner sc = new Scanner(System.in);
 
     public static void playGuessNumber() {
 
@@ -54,8 +61,14 @@ public class HomeWork_3 {
 
          } while (sc.nextInt() == 1);
 
+        sc.close();
+
          System.out.println("Игра окончена!");
 
     }
 
+    public static void playGuessWord() {
+        System.out.println("Игра \"Угадай слово\" окончена!");
+
+    }
 }
