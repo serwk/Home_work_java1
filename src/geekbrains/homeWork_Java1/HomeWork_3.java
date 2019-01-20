@@ -90,13 +90,14 @@ public class HomeWork_3 {
                 break;
             } else {
                 String tip = "";
+                int wordLength = (word.length() > x.length())? x.length():word.length();
                 // to find the matching letters
-                for (int i = 0; i < word.length(); i++) {
+                for (int i = 0; i < wordLength; i++) {
                     tip += (word.charAt(i) == x.charAt(i))? word.charAt(i):'#';
                 }
 
                 // add special characters to the string
-                for (int i = 1; i < (15 - word.length()); i++) {
+                for (int i = 0; i < (15 - wordLength); i++) {
                     tip += '#';
                 }
 
