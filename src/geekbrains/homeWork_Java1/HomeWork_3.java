@@ -4,7 +4,7 @@ package geekbrains.homeWork_Java1;
 Java. Level 1. Home work 3.
 
 @author Sergey Bondarenko
-@version dated Jan 19, 2019
+@version dated Jan 20, 2019
  */
 
 import java.util.Random;
@@ -63,12 +63,49 @@ public class HomeWork_3 {
 
         sc.close();
 
-         System.out.println("Игра окончена!");
+         System.out.println("\nИгра \"Угадай число\" окончена!");
 
     }
 
     public static void playGuessWord() {
-        System.out.println("Игра \"Угадай слово\" окончена!");
 
+        String x;
+
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
+                "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea",
+                "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+
+        Random rand = new Random();
+
+        // selected word
+        String word = words[rand.nextInt(25)];
+
+        System.out.println("Отгадайте слово. <Подсказка - " + word + ">");
+
+        while (true){
+
+            x = sc.next();
+            if (word.equals(x)) {
+                System.out.println("\nВы выиграли! :)");
+                break;
+            } else {
+                String tip = "";
+                // to find the matching letters
+                for (int i = 0; i < word.length(); i++) {
+                    tip += (word.charAt(i) == x.charAt(i))? word.charAt(i):'#';
+                }
+
+                // add special characters to the string
+                for (int i = 1; i < (15 - word.length()); i++) {
+                    tip += '#';
+                }
+
+                System.out.println("Попробуйте еще раз. Подсказка: " + tip);
+            }
+         }
+
+        sc.close();
+
+        System.out.println("\nИгра \"Угадай слово\" окончена!");
     }
 }
