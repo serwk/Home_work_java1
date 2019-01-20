@@ -104,7 +104,6 @@ public class HomeWork_3 {
                 System.out.println("Попробуйте еще раз. Подсказка: " + tip);
             }
          }
-
         sc.close();
 
         System.out.println("\nИгра \"Угадай слово\" окончена!");
