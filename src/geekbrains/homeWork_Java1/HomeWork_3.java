@@ -71,32 +71,28 @@ public class HomeWork_3 {
         StringBuilder tip = new StringBuilder();
         while (true){
 
+            // add special characters to the string
+            if (tip.length() < 15) {
+                for (int i = 0; i < 15; i++) {
+                    tip.append('#');
+                }
+            }
+
             String userWord = sc.next();
             if (word.equals(userWord)) {
                 System.out.println("\nВы выиграли! :)");
                 break;
             } else {
-                int wordLength = (int) Math.min(word.length(),userWord.length());
+                int wordLength = Math.min(word.length(), userWord.length());
                 // to find the matching letters
                 for (int i = 0; i < wordLength; i++) {
-                    boolean matchedChar = (word.charAt(i) == userWord.charAt(i));
-                    if (tip.length()  <= i) {
-                        tip.append((matchedChar) ? word.charAt(i) : '#');
-                    } else if ((tip.charAt(i) == '#')&& matchedChar) {
-                         tip.setCharAt(i,word.charAt(i));
+                    if (word.charAt(i) == userWord.charAt(i)){
+                        tip.setCharAt(i, word.charAt(i));
                     }
                 }
-
-                // add special characters to the string
-                if (tip.length()<15) {
-                    for (int i = 0; i < (15 - wordLength); i++) {
-                        tip.append('#');
-                    }
-                }
-
                 System.out.println("Попробуйте еще раз. Подсказка: " + tip);
             }
-         }
+        }
         System.out.println("\nИгра \"Угадай слово\" окончена!");
     }
 }
