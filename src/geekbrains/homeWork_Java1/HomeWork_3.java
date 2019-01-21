@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class HomeWork_3 {
 
     private static Scanner sc = new Scanner(System.in);
+    private static Random rand = new Random();
 
     public static void main (String[] args) {
 
@@ -31,7 +32,6 @@ public class HomeWork_3 {
 
     private static void playGuessNumber() {
 
-        Random rand = new Random();
         do {
             int randNum = rand.nextInt(10);
 
@@ -62,8 +62,6 @@ public class HomeWork_3 {
         String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
                 "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea",
                 "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-
-        Random rand = new Random();
 
         // selected word
         String word = words[rand.nextInt(words.length)];
