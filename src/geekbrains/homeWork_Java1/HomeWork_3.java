@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 public class HomeWork_3 {
 
-    public static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
+    private static Random rand = new Random();
 
     public static void main (String[] args) {
 
@@ -26,87 +27,72 @@ public class HomeWork_3 {
             //Task 2. Game "Guess the word"
             playGuessWord();
         }
-
+        sc.close();
     }
 
-    public static void playGuessNumber() {
-
-        int x;
+    private static void playGuessNumber() {
 
         do {
-            Random rand = new Random();
-            int num = rand.nextInt(10);
+            int randNum = rand.nextInt(10);
 
-            System.out.println("Отгадайте число от 0 до 9. <Подсказка - " + num + ">");
-
-            boolean win = false;
+            System.out.println("Отгадайте число от 0 до 9. <Подсказка - " + randNum + ">");
 
             for (int i = 0; i < 3; i++) {
-                x = sc.nextInt();
-                if (x == num) {
+                int userNum = sc.nextInt();
+                if (userNum == randNum) {
                     System.out.println("\nВы выиграли! :)");
-                    win = true;
                     break;
-                } else if (num > x){
+                } else if (i == 2) {
+                    System.out.println("\nВы проиграли! :(");
+                } else if (randNum > userNum){
                     System.out.println("Загаданное число больше. Осталось попыток: " + (2-i));
-                } else if (num < x) {
+                } else if (randNum < userNum) {
                     System.out.println("Загаданное число меньше. Осталось попыток: " + (2-i));
                 }
-
-            }
-            if (!win) {
-                System.out.println("\nВы проиграли! :(");
             }
             System.out.println("\nПовторить игру еще раз? 1 - да / 0 - нет");
 
          } while (sc.nextInt() == 1);
 
-        sc.close();
-
          System.out.println("\nИгра \"Угадай число\" окончена!");
-
     }
 
-    public static void playGuessWord() {
-
-        String x;
+    private static void playGuessWord() {
 
         String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
                 "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea",
                 "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
 
-        Random rand = new Random();
-
         // selected word
-        String word = words[rand.nextInt(25)];
+        String word = words[rand.nextInt(words.length)];
 
         System.out.println("Отгадайте слово. <Подсказка - " + word + ">");
 
+        StringBuilder tip = new StringBuilder();
         while (true){
 
-            x = sc.next();
-            if (word.equals(x)) {
+            // add special characters to the string
+            if (tip.length() < 15) {
+                for (int i = 0; i < 15; i++) {
+                    tip.append('#');
+                }
+            }
+
+            String userWord = sc.next();
+            if (word.equals(userWord)) {
                 System.out.println("\nВы выиграли! :)");
                 break;
             } else {
-                String tip = "";
-                int wordLength = (word.length() > x.length())? x.length():word.length();
+                int wordLength = Math.min(word.length(), userWord.length());
                 // to find the matching letters
                 for (int i = 0; i < wordLength; i++) {
-                    tip += (word.charAt(i) == x.charAt(i))? word.charAt(i):'#';
+                    if (word.charAt(i) == userWord.charAt(i)){
+                        tip.setCharAt(i, word.charAt(i));
+                    }
                 }
-
-                // add special characters to the string
-                for (int i = 0; i < (15 - wordLength); i++) {
-                    tip += '#';
-                }
-
                 System.out.println("Попробуйте еще раз. Подсказка: " + tip);
             }
-         }
-
-        sc.close();
-
+        }
         System.out.println("\nИгра \"Угадай слово\" окончена!");
     }
 }
