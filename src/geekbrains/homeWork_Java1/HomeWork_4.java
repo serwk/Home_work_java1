@@ -92,6 +92,7 @@ public class HomeWork_4 {
         x o x
         */
 
+        //Объединить методы getWinTurn() и !aiBlockTurnUser()
         if (getWinTurn() || !aiBlockTurnUser()) {
             //провевить выполняется ли поиск победного хода игрока (aiBlockTurnUser) после победы компьютера
             // (когда getWinTurn возвращает тру)
