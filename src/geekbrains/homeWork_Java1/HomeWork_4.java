@@ -6,7 +6,7 @@ package geekbrains.homeWork_Java1;
  Game TicTacToe
 
  @author Sergey Bondarenko
- @version dated Jan 24, 2019
+ @version dated Jan 27, 2019
  */
 
 import java.util.Random;
@@ -75,7 +75,7 @@ public class HomeWork_4 {
     void humanTurn() {
         int x, y;
         do {
-            System.out.println("Enter X and Y (1..3):");
+            System.out.println("Enter X and Y (1.." + SIZE + "):");
             x = scanner.nextInt() - 1;
             y = scanner.nextInt() - 1;
         } while (!isCellValid(x, y));
@@ -92,10 +92,13 @@ public class HomeWork_4 {
         x o x
         */
 
-        if (getWinTurn() || !aiBlockTurnUser()) {
+        //Объединить методы getWinTurn() и !aiBlockTurnUser()
+        if (!(getWinTurn() || aiBlockTurnUser())) {
             //провевить выполняется ли поиск победного хода игрока (aiBlockTurnUser) после победы компьютера
             // (когда getWinTurn возвращает тру)
             //чтобы не было двойного хода компьютера
+
+            System.out.println("Произвольный ход компьютера.");
             int x = 0;
             int y = 0;
             do {
@@ -107,6 +110,8 @@ public class HomeWork_4 {
     }
 
     boolean getWinTurn() {
+
+        System.out.println("Поиск победного хода компьютера.");
         int x = 0;
         int y = 0;
 
@@ -137,55 +142,55 @@ public class HomeWork_4 {
             if (blockBasicDiagonal && (turnUserBasicDiagonal == SIZE - 1)) {
                 x = xBasicDiagonal;
                 y = yBasicDiagonal;
-                map[y][x] = DOT_O;
+                map[x][y] = DOT_O;
                 return true;
             }
 
             // check secondary diagonal
-            if (map[i][SIZE - (i + 1)] != DOT_X) {
+            if (map[i][SIZE - (i + 1)] == DOT_X) {
                 blockSecondaryDiagonal = false;
-            } else if (map[i][i] == DOT_O) {
+            } else if (map[i][SIZE - (i + 1)] == DOT_O) {
                 turnUserSecondaryDiagonal++;
-            } else if (map[i][i] == DOT_EMPTY) {
+            } else if (map[i][SIZE - (i + 1)] == DOT_EMPTY) {
                 xSecondaryDiagonal = i;
-                ySecondaryDiagonal = i;
+                ySecondaryDiagonal = SIZE - (i + 1);
             }
 
             if (blockSecondaryDiagonal && (turnUserSecondaryDiagonal == SIZE - 1)) {
                 x = xSecondaryDiagonal;
                 y = ySecondaryDiagonal;
-                map[y][x] = DOT_O;
+                map[x][y] = DOT_O;
                 return true;
             }
 
+            boolean blockHorizontal = true;
+            boolean blockVertical = true;
+
+            int turnUserHorizontal = 0;
+            int turnUserVertical = 0;
+
+            int xHorizontal = 0;
+            int yHorizontal = 0;
+
+            int xVertical = 0;
+            int yVertical = 0;
+
             for (int j = 0; j < SIZE; j++) {
 
-                boolean blockHorizontal = true;
-                boolean blockVertical = true;
-
-                int turnUserHorizontal = 0;
-                int turnUserVertical = 0;
-
-                int xHorizontal = 0;
-                int yHorizontal = 0;
-
-                int xVertical = 0;
-                int yVertical = 0;
-
-                // check horizontal
+                 // check horizontal
                 if (map[i][j] == DOT_X) {
                     blockHorizontal = false;
                 } else if (map[i][j] == DOT_O) {
                     turnUserHorizontal++;
                 } else if (map[i][j] == DOT_EMPTY) {
                     xHorizontal = i;
-                    yHorizontal = i;
+                    yHorizontal = j;
                 }
 
                 if (blockHorizontal && (turnUserHorizontal == SIZE - 1)) {
                     x = xHorizontal;
                     y = yHorizontal;
-                    map[y][x] = DOT_O;
+                    map[x][y] = DOT_O;
                     return true;
                 }
 
@@ -195,14 +200,14 @@ public class HomeWork_4 {
                 } else if (map[j][i] == DOT_O) {
                     turnUserVertical++;
                 } else if (map[j][i] == DOT_EMPTY) {
-                    xVertical = i;
+                    xVertical = j;
                     yVertical = i;
                 }
 
                 if (blockVertical && (turnUserVertical == SIZE - 1)) {
                     x = xVertical;
                     y = yVertical;
-                    map[y][x] = DOT_O;
+                    map[x][y] = DOT_O;
                     return true;
                 }
             }
@@ -211,6 +216,9 @@ public class HomeWork_4 {
     }
 
     boolean aiBlockTurnUser() {
+
+        System.out.println("Поиск победного хода игрока для его блокировки.");
+
         int x = 0;
         int y = 0;
 
@@ -241,40 +249,40 @@ public class HomeWork_4 {
             if (blockBasicDiagonal && (turnUserBasicDiagonal == SIZE - 1)) {
                 x = xBasicDiagonal;
                 y = yBasicDiagonal;
-                map[y][x] = DOT_O;
+                map[x][y] = DOT_O;
                 return true;
             }
 
             // check secondary diagonal
-            if (map[i][SIZE - (i + 1)] != DOT_O) {
+            if (map[i][SIZE - (i + 1)] == DOT_O) {
                 blockSecondaryDiagonal = false;
-            } else if (map[i][i] == DOT_X) {
+            } else if (map[i][SIZE - (i + 1)] == DOT_X) {
                 turnUserSecondaryDiagonal++;
-            } else if (map[i][i] == DOT_EMPTY) {
+            } else if (map[i][SIZE - (i + 1)] == DOT_EMPTY) {
                 xSecondaryDiagonal = i;
-                ySecondaryDiagonal = i;
+                ySecondaryDiagonal = SIZE - (i + 1);
             }
 
             if (blockSecondaryDiagonal && (turnUserSecondaryDiagonal == SIZE - 1)) {
                 x = xSecondaryDiagonal;
                 y = ySecondaryDiagonal;
-                map[y][x] = DOT_O;
+                map[x][y] = DOT_O;
                 return true;
             }
 
+            boolean blockHorizontal = true;
+            boolean blockVertical = true;
+
+            int turnUserHorizontal = 0;
+            int turnUserVertical = 0;
+
+            int xHorizontal = 0;
+            int yHorizontal = 0;
+
+            int xVertical = 0;
+            int yVertical = 0;
+
             for (int j = 0; j < SIZE; j++) {
-
-                boolean blockHorizontal = true;
-                boolean blockVertical = true;
-
-                int turnUserHorizontal = 0;
-                int turnUserVertical = 0;
-
-                int xHorizontal = 0;
-                int yHorizontal = 0;
-
-                int xVertical = 0;
-                int yVertical = 0;
 
                 // check horizontal
                 if (map[i][j] == DOT_O) {
@@ -283,13 +291,13 @@ public class HomeWork_4 {
                     turnUserHorizontal++;
                 } else if (map[i][j] == DOT_EMPTY) {
                     xHorizontal = i;
-                    yHorizontal = i;
+                    yHorizontal = j;
                 }
 
                 if (blockHorizontal && (turnUserHorizontal == SIZE - 1)) {
                     x = xHorizontal;
                     y = yHorizontal;
-                    map[y][x] = DOT_O;
+                    map[x][y] = DOT_O;
                     return true;
                 }
 
@@ -299,20 +307,22 @@ public class HomeWork_4 {
                 } else if (map[j][i] == DOT_X) {
                     turnUserVertical++;
                 } else if (map[j][i] == DOT_EMPTY) {
-                    xVertical = i;
+                    xVertical = j;
                     yVertical = i;
                 }
 
                 if (blockVertical && (turnUserVertical == SIZE - 1)) {
                     x = xVertical;
                     y = yVertical;
-                    map[y][x] = DOT_O;
+                    map[x][y] = DOT_O;
                     return true;
                 }
             }
         }
         return false;
     }
+
+
 
     boolean checkWin(char dt) {
 
