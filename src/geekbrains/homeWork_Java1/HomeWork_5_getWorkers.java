@@ -18,10 +18,10 @@ public class HomeWork_5_getWorkers {
         workArray[3] = new HomeWork_5_worker("Sidorov ivan", "manager", "sidivan@mailbox.com", "84951200567", 90000, 45);
         workArray[4] = new HomeWork_5_worker("Ivanov Nicholas", "director", "ivnich@mailbox.com", "84951234007", 100000, 50);
 
-        for (int i = 0; i < workArray.length; i++) {
-            if(workArray[i].getAge() > 40) {
-                System.out.println(workArray[i].toString());
-           }
+        for (HomeWork_5_worker worker: workArray) {
+            if(worker.getAge() > 40) {
+                System.out.println(worker);
+            }
         }
     }
 }
