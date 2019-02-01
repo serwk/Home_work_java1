@@ -1,28 +1,21 @@
 package geekbrains.homeWork_Java1.HomeWork_6;
 
+import java.util.Random;
+
 public class Dog extends Animal{
-    Dog (int limitRun, int limitSwim, float limitJump) {
-        super(limitRun, limitSwim, limitJump);
-    }
 
-    @Override
-    public void run(int length) {
-        System.out.println("running " + length + " - " + (length <= limitRun));
-    }
+    private static Random random = new Random();
 
-    @Override
-    public void swim(int length) {
-        System.out.println("swimming " + length + " - " + (length <= limitSwim));
-    }
-
-    @Override
-    public void jump(float height) {
-        System.out.println("jump " + height + " - " + (height <= limitJump));
+    public Dog () {
+        super(
+                random.nextInt(100) + 450,
+                random.nextInt(10) + 5,
+                random.nextFloat()*3
+        );
     }
 
     @Override
     public String toString() {
-        return "dog. limit run: " + limitRun + ", limit swim: " + limitSwim + ", limit jump: " + limitJump;
+        return "Dog. limit run: " + limitRun + ", limit swim: " + limitSwim + ", limit jump: " + limitJump;
     }
-
 }
