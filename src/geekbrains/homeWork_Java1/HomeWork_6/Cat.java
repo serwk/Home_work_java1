@@ -13,9 +13,5 @@ public class Cat extends Animal {
                 random.nextFloat()*3
         );
     }
-
-    @Override
-    public String toString() {
-        return "Cat. limit run: " + limitRun + ", limit swim: " + limitSwim + ", limit jump: " + limitJump;
-    }
 }
+

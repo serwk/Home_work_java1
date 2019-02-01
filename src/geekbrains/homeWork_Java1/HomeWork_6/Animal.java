@@ -1,9 +1,9 @@
 package geekbrains.homeWork_Java1.HomeWork_6;
 
 abstract class Animal implements JumpAble,RunAble,SwimAble {
-    int limitRun;
-    int limitSwim;
-    float limitJump;
+    private int limitRun;
+    private int limitSwim;
+    private float limitJump;
 
     Animal(int limitRun, int limitSwim, float limitJump) {
         this.limitRun = limitRun;
@@ -22,5 +22,14 @@ abstract class Animal implements JumpAble,RunAble,SwimAble {
     public void jump(float height) {
         System.out.println("jump " + height + " - " + (height <= limitJump));
     }
-  }
+
+    public String toString() {
+        return String.format("%s. run:%d swim:%d jump:%.2f",
+                this.getClass().getSimpleName(),
+                limitRun,
+                limitSwim,
+                limitJump);
+    }
+
+}
 
