@@ -1,9 +1,13 @@
 package geekbrains.homeWork_Java1.HomeWork_6;
 
+import java.util.Random;
+
 abstract class Animal implements JumpAble,RunAble,SwimAble {
     private int limitRun;
     private int limitSwim;
     private float limitJump;
+
+    static Random random = new Random();
 
     Animal(int limitRun, int limitSwim, float limitJump) {
         this.limitRun = limitRun;
