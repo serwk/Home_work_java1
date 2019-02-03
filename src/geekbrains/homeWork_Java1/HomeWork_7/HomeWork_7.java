@@ -11,13 +11,14 @@ public class HomeWork_7 {
         cats[4] = new Cat("Markis",3);
 
         Plate plate = new Plate(10);
-        plate.info();
+
+        System.out.print(plate);
 
         for (Cat cat: cats) {
             cat.eat(plate);
-            System.out.printf("\n%s \tplate:%d",
+            System.out.printf("\n%s \t%s",
                     cat,
-                    plate.getFood());
+                    plate);
         }
     }
 }

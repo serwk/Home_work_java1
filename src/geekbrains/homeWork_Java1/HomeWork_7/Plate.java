@@ -7,19 +7,15 @@ public class Plate {
     }
 
     public boolean decreaseFood(int n) {
+
         if(n <= food) {
             food -= n;
             return true;
-        } else {
-            return false;
         }
-    }
+        return false;
+     }
 
-    public void info () {
-        System.out.println("plate: " + food);
-    }
-
-    int getFood() {
-        return food;
+    public String toString() {
+        return "plate: " + food;
     }
 }

@@ -7,7 +7,6 @@ public class Cat {
     public Cat (String name ,int appetite) {
         this.name = name;
         this.appetite = appetite;
-        this.satiety = false;
     }
     public void eat(Plate p) {
         satiety = p.decreaseFood(appetite);
@@ -19,6 +18,4 @@ public class Cat {
                 appetite,
                 satiety);
     }
-
-
 }
